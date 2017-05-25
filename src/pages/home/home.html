@@ -11,8 +11,28 @@
   <h3>Time Tracking</h3>
 
   <button ion-button
-    (click)="buttonPressed($event)"
-    [color]="isRunning ? 'primary' : 'secondary'">
-  {{isRunning ? 'Start' : 'Pause'}}
+    *ngIf="!isRunning"
+    (click)="startPressed($event)"
+    color="primary">
+    Start
   </button>
+
+  <div *ngIf="startTime">
+    Start time: {{startTime | date:'medium'}}
+  </div>
+
+  <button ion-button
+    *ngIf="isRunning"
+    (click)="stopPressed($event)"
+    color="danger">
+    Stop
+  </button>
+
+  <ion-item *ngFor="let event of events; let i = index">
+    <ion-label>Event {{i + 1}}</ion-label>
+    <div item-content>
+      <p>Start Time {{event.startTime | date:'medium'}}</p>
+      <p>End Time {{event.endTime | date:'medium'}}</p>
+    </div>
+  </ion-item>
 </ion-content>
