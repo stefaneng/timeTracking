@@ -29,10 +29,10 @@
   </button>
 
   <ion-item *ngFor="let event of events; let i = index">
-    <ion-label>Event {{i + 1}}</ion-label>
     <div item-content>
-      <p>Start Time {{event.startTime | date:'medium'}}</p>
-      <p>End Time {{event.endTime | date:'medium'}}</p>
+    <ion-input type="text" [(ngModel)]="event.name"></ion-input>
+      <p>Start Time {{event.startTime | date:'mediumTime'}}</p>
+      <p>End Time {{event.endTime | date:'mediumTime'}}</p>
     </div>
   </ion-item>
 </ion-content>

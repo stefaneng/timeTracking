@@ -23,7 +23,9 @@ export class HomePage {
   stopPressed(event) {
     this.isRunning = false;
     let endTime = new Date(Date.now());
+    let name = "Event " + (this.events.length + 1);
     this.events.push({
+      name: name,
       startTime: this.startTime,
       endTime: endTime
     });
