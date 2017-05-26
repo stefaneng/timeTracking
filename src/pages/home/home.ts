@@ -1,20 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { TimeEvent } from '../../model/time-event'
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   isRunning = false;
 
-  events: Array<TimeEvent> = [];
+  events: Array<TimeEvent>;
   startTime: Date;
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, private eventService: EventService) {}
 
+  ngOnInit(): void {
+    this.getEvents();
+  }
+
+  getEvents() {
+    this.events = this.eventService.getEvents();
+  }
+
+  clearPressed(event) {
+    this.eventService.clearEvents
+  }
   startPressed(event) {
     this.isRunning = true;
     this.startTime = new Date(Date.now());

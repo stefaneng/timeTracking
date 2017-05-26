@@ -28,6 +28,8 @@
     Stop
   </button>
 
+  <button ion-button (click)="clearPressed($event)" color="danger">Clear Events</button>
+
   <ion-item *ngFor="let event of events; let i = index">
     <div item-content>
     <ion-input type="text" [(ngModel)]="event.name"></ion-input>
