@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
   }
 
   getEvents() {
-    this.events = this.eventService.getEvents();
+    this.eventService.getEvents().then(events => this.events = events);
   }
 
   clearPressed(event) {

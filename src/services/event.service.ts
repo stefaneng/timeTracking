@@ -5,8 +5,8 @@ import { TimeEvent } from '../model/time-event';
 export class EventService {
   events = [];
 
-  getEvents(): Array<TimeEvent> {
-    return this.events;
+  getEvents(): Promise<TimeEvent[]> {
+    return Promise.resolve(this.events);
   }
 
   addEvent(timeEvent: TimeEvent): void {
