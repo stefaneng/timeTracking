@@ -60,4 +60,8 @@ export class HomePage implements OnInit {
     });
     this.startTime = null;
   }
+
+  updateEventName(eventName, index) {
+    this.eventService.updateEventName(eventName, index);
+  }
 }

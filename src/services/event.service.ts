@@ -24,4 +24,11 @@ export class EventService {
   clearEvents(): void {
     this.storage.set('events', []);
   }
+
+  updateEventName(eventName, index) {
+    this.getEvents().then((events) => {
+      events[index].name = eventName;
+      this.storage.set('events', events);
+    })
+  }
 }

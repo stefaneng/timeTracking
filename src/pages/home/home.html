@@ -32,7 +32,7 @@
 
   <ion-item *ngFor="let event of events; let i = index">
     <div item-content>
-    <ion-input type="text" [(ngModel)]="event.name"></ion-input>
+    <ion-input type="text" [(ngModel)]="event.name" (ngModelChange)="updateEventName($event, i)"></ion-input>
       <p>Start Time {{event.startTime | date:'mediumTime'}}</p>
       <p>End Time {{event.endTime | date:'mediumTime'}}</p>
     </div>
