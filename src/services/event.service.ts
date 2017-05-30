@@ -1,19 +1,27 @@
 import { Injectable } from '@angular/core';
 import { TimeEvent } from '../model/time-event';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class EventService {
-  events = [];
+
+  constructor(private storage: Storage) {}
 
   getEvents(): Promise<TimeEvent[]> {
-    return Promise.resolve(this.events);
+    return this.storage.get('events');
   }
 
   addEvent(timeEvent: TimeEvent): void {
-    this.events.push(timeEvent);
+    this.getEvents().then((oldEvents) => {
+      if (oldEvents == null)  {
+        oldEvents = [];
+      }
+      oldEvents.push(timeEvent);
+      this.storage.set('events', oldEvents);
+    })
   }
 
   clearEvents(): void {
-    this.events = [];
+    this.storage.set('events', []);
   }
 }

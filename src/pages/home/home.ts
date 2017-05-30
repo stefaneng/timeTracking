@@ -11,7 +11,7 @@ export class HomePage implements OnInit {
 
   isRunning = false;
 
-  events: Array<TimeEvent>;
+  events: TimeEvent[];
   startTime: Date;
 
   constructor(public navCtrl: NavController, private eventService: EventService) {}
@@ -21,13 +21,29 @@ export class HomePage implements OnInit {
   }
 
   getEvents() {
-    this.eventService.getEvents().then(events => this.events = events);
+    this.eventService.getEvents().then((events) => {
+      if (events == null) {
+        this.events = [];
+      }
+      else {
+        this.events = events;
+      }
+    }).catch((err) => {
+      console.error("Error in getting events: ", err);
+      this.events = [];
+    });
+  }
+
+  addEvent(event: TimeEvent) {
+    this.eventService.addEvent(event);
+    this.events.push(event);
   }
 
   clearPressed(event) {
     this.eventService.clearEvents();
-    this.getEvents();
+    this.events = [];
   }
+
   startPressed(event) {
     this.isRunning = true;
     this.startTime = new Date(Date.now());
@@ -37,7 +53,7 @@ export class HomePage implements OnInit {
     this.isRunning = false;
     let endTime = new Date(Date.now());
     let name = "Event " + (this.events.length + 1);
-    this.events.push({
+    this.addEvent({
       name: name,
       startTime: this.startTime,
       endTime: endTime
