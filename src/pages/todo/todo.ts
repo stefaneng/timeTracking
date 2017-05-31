@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { Todo } from '../../model/todo';
+
 @IonicPage()
 @Component({
   selector: 'page-todo',
@@ -8,11 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TodoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  todos: Todo[] = [];
+  newTodo: String = "";
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TodoPage');
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
+  ionViewDidLoad() {}
+
+  enterTodo() {
+    this.todos.push({
+      title: this.newTodo,
+      checked: false
+    });
+    this.newTodo = "";
+  }
 }
