@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TodoPage } from '../pages/todo/todo';
 import { EventService } from '../services/event.service';
+import { TodoService } from '../services/todo.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -32,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EventService
+    EventService,
+    TodoService
   ]
 })
 export class AppModule {}

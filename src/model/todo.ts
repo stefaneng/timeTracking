@@ -1,4 +1,5 @@
 export class Todo {
   title: String;
-  checked: Boolean;
+  completed: Boolean;
+  created: Date;
 }

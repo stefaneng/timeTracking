@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../model/todo';
 
 @IonicPage()
@@ -8,20 +8,31 @@ import { Todo } from '../../model/todo';
   selector: 'page-todo',
   templateUrl: 'todo.html',
 })
-export class TodoPage {
+export class TodoPage implements OnInit {
 
-  todos: Todo[] = [];
+  todos: Todo[];
   newTodo: String = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoService) {}
 
   ionViewDidLoad() {}
 
-  enterTodo() {
-    this.todos.push({
-      title: this.newTodo,
-      checked: false
+  ngOnInit() {
+    this.getTodos();
+  }
+
+  getTodos() {
+    this.todoService.getTodos().then((todos) => {
+      this.todos = todos;
     });
+  }
+
+  enterTodo() {
+    this.todos = this.todoService.addFront(this.newTodo);
     this.newTodo = "";
+  }
+
+  removeTodo(index) {
+    this.todos = this.todoService.removeIndex(index);
   }
 }
