@@ -18,7 +18,7 @@
         <ion-label [class.done]="todo.completed" [class.notDone]="!todo.completed">
           {{todo.title}}
         </ion-label>
-        <ion-checkbox item-start [(ngModel)]="todo.completed"></ion-checkbox>
+        <ion-checkbox item-start [(ngModel)]="todo.completed" (ngModelChange)="updateTodo(todo)"></ion-checkbox>
         <button ion-button item-end (click)="removeTodo(i)">
           <ion-icon name="close"></ion-icon>
         </button>

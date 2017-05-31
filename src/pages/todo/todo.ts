@@ -27,6 +27,11 @@ export class TodoPage implements OnInit {
     });
   }
 
+  // Updates a single todo with TodoService
+  updateTodo(todo: Todo) {
+    this.todoService.updateTodo(todo);
+  }
+
   enterTodo() {
     this.todos = this.todoService.addFront(this.newTodo);
     this.newTodo = "";
