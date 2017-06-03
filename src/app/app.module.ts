@@ -6,6 +6,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TodoPage } from '../pages/todo/todo';
+import { TodoItemPage } from '../pages/todo-item/todo-item';
 import { EventService } from '../services/event.service';
 import { TodoService } from '../services/todo.service';
 
@@ -16,7 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    TodoPage
+    TodoPage,
+    TodoItemPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    TodoPage
+    TodoPage,
+    TodoItemPage
   ],
   providers: [
     StatusBar,

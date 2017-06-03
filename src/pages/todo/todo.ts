@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../model/todo';
+import { TodoItemPage } from '../todo-item/todo-item';
 
 @IonicPage()
 @Component({
@@ -39,5 +40,11 @@ export class TodoPage implements OnInit {
 
   removeTodo(index) {
     this.todos = this.todoService.removeIndex(index);
+  }
+
+  displayItemDetails(todo) {
+    this.navCtrl.push(TodoItemPage, {
+      'todoItem': todo
+    });
   }
 }

@@ -4,5 +4,6 @@ export class Todo {
   title: String;
   completed: Boolean;
   created: Date;
+  completedOn: Date;
   id: UUID;
 }

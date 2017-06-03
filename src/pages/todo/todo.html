@@ -19,8 +19,8 @@
           {{todo.title}}
         </ion-label>
         <ion-checkbox item-start [(ngModel)]="todo.completed" (ngModelChange)="updateTodo(todo)"></ion-checkbox>
-        <button ion-button item-end (click)="removeTodo(i)">
-          <ion-icon name="close"></ion-icon>
+        <button ion-button item-end outline (click)="displayItemDetails(todo)">
+          <ion-icon name="menu"></ion-icon>
         </button>
     </ion-item>
   </ion-list>
