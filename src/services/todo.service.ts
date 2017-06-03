@@ -27,6 +27,7 @@ export class TodoService {
     let todo = {
       title: todoString,
       completed: false,
+      completedDate: null,
       created: new Date(Date.now()),
       id: UUID.UUID()
     };
@@ -44,6 +45,7 @@ export class TodoService {
     let todo = {
       title: todoString,
       completed: false,
+      completedDate: null,
       created: new Date(Date.now()),
       id: UUID.UUID()
     };

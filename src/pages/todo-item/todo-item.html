@@ -8,5 +8,10 @@
 
 
 <ion-content padding>
-  {{todoItem.title}}
+  <p>
+  Created: {{todoItem.created | date:'medium'}}
+  </p>
+  <p *ngIf="todoItem.completed">
+    Completed: {{todoItem.completedDate | date:'medium'}}
+  </p>
 </ion-content>

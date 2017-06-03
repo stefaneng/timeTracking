@@ -33,6 +33,15 @@ export class TodoPage implements OnInit {
     this.todoService.updateTodo(todo);
   }
 
+  completeTodo(todo: Todo) {
+    if (todo.completed) {
+      todo.completedDate = new Date(Date.now());
+    } else {
+      todo.completedDate = null;
+    }
+    this.updateTodo(todo);
+  }
+
   enterTodo() {
     this.todos = this.todoService.addFront(this.newTodo);
     this.newTodo = "";
