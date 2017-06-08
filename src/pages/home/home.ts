@@ -56,7 +56,8 @@ export class HomePage implements OnInit {
     this.addEvent({
       name: name,
       startTime: this.startTime,
-      endTime: endTime
+      endTime: endTime,
+      todoId: null
     });
     this.startTime = null;
   }

@@ -14,4 +14,32 @@
   <p *ngIf="todoItem.completed">
     Completed: {{todoItem.completedDate | date:'medium'}}
   </p>
+
+  <button ion-button
+    *ngIf="!isRunning"
+    (click)="startPressed($event)"
+    color="primary">
+    Start
+  </button>
+
+  <div *ngIf="startTime">
+    Start time: {{startTime | date:'medium'}}
+  </div>
+
+  <button ion-button
+    *ngIf="isRunning"
+    (click)="stopPressed($event)"
+    color="danger">
+    Stop
+  </button>
+
+  <ion-item *ngFor="let event of events">
+    <ion-label>
+      {{event.name}}
+    </ion-label>
+    <div item-content>
+      <p>Start Time {{event.startTime | date:'mediumTime'}}</p>
+      <p>End Time {{event.endTime | date:'mediumTime'}}</p>
+    </div>
+  </ion-item>
 </ion-content>
