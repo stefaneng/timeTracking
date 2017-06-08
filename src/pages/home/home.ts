@@ -21,26 +21,14 @@ export class HomePage implements OnInit {
   }
 
   getEvents() {
-    this.eventService.getEvents().then((events) => {
-      if (events == null) {
-        this.events = [];
-      }
-      else {
-        this.events = events;
-      }
-    }).catch((err) => {
-      console.error("Error in getting events: ", err);
-      this.events = [];
-    });
+    this.events = [];
   }
 
   addEvent(event: TimeEvent) {
-    this.eventService.addEvent(event);
     this.events.push(event);
   }
 
   clearPressed(event) {
-    this.eventService.clearEvents();
     this.events = [];
   }
 
@@ -63,6 +51,6 @@ export class HomePage implements OnInit {
   }
 
   updateEventName(eventName, index) {
-    this.eventService.updateEventName(eventName, index);
+    //this.eventService.updateEventName(eventName, index);
   }
 }
