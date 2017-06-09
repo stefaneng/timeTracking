@@ -14,8 +14,19 @@ export class EventService {
       this.storage.get('events').then((events) => {
         if (events == null) {
           resolve([]);
+        } else {
+          resolve(events[strId]);
         }
-        resolve(events[strId]);
+      });
+    });
+  }
+
+  saveEventsId(id: UUID, events: TimeEvent[]): Promise<any> {
+    return new Promise((resolve) => {
+        this.storage.get('events').then((eventsObj) => {
+          let newEventsObj = eventsObj || {};
+          newEventsObj[id.toString()] = events;
+          resolve(this.storage.set('events', newEventsObj));
       });
     });
   }

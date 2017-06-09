@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Todo } from '../../model/todo';
 import { TimeEvent } from '../../model/time-event';
+import { EventService } from '../../services/event.service';
 
 @IonicPage()
 @Component({
@@ -10,18 +11,26 @@ import { TimeEvent } from '../../model/time-event';
 })
 export class TodoItemPage {
   todoItem: Todo;
-  events: TimeEvent[] = [];
+  events: TimeEvent[];
   startTime: Date;
   isRunning: Boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private eventService: EventService) {
     this.todoItem = navParams.get("todoItem");
+    eventService.getEventsId(this.todoItem.id).then((events) => {
+      this.events = events || [];
+    });
   }
 
   ionViewDidLoad() {}
 
   addEvent(event: TimeEvent) {
-    this.events.push(event);
+    // Add event to top of the list
+    this.events = [
+      event,
+      ...this.events
+    ];
+    this.eventService.saveEventsId(this.todoItem.id, this.events);
   }
 
   stopPressed(event) {
